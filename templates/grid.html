@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conway's Game of Life</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <h1>Game of Life</h1>
+    <table id="grid">
+        <!-- Content will be populated dynamically -->
+    </table>
+    <div id="controls">
+        <button id="startButton" onclick="startUpdatingGrid()"><span class=reload>&#9654;</span> Start</button>
+        <button id="pauseButton" onclick="pauseUpdatingGrid()" disabled><span class=reload>&#9632;</span> Pause</button>
+        <button id="randomizeButton" onclick="randomizeGrid()"><span class=reload>&#x21bb;</span> Randomize</button>
+    </div>
+    <script>
+      let updateInterval; // To store the interval ID
+
+// Function to start updating the grid using an AJAX request
+function startUpdatingGrid() {
+    document.getElementById('startButton').disabled = true;
+    document.getElementById('pauseButton').disabled = false;
+    document.getElementById("pauseButton").style.backgroundColor = "#f1883e";
+    document.getElementById("startButton").style.backgroundColor = "#ab5315";
+    updateInterval = setInterval(updateGrid, 1000); // Adjust the interval as needed (in milliseconds)
+}
+
+// Function to pause the grid updates
+function pauseUpdatingGrid() {
+    document.getElementById('startButton').disabled = false;
+    document.getElementById('pauseButton').disabled = true;
+    document.getElementById("pauseButton").style.backgroundColor = "#ab5315";
+    document.getElementById("startButton").style.backgroundColor = "#f1883e";
+    clearInterval(updateInterval);
+}
+
+// Function to update the grid using an AJAX request
+function updateGrid() {
+    fetch('/get_grid')
+        .then(response => response.json())
+        .then(data => {
+            const gridTable = document.getElementById('grid');
+            gridTable.innerHTML = '';
+
+            data.result.forEach(row => {
+                const tableRow = document.createElement('tr');
+                row.forEach(cell => {
+                    const tableCell = document.createElement('td');
+                    tableCell.className = cell === '0' ? 'white' : 'black';
+                    tableRow.appendChild(tableCell);
+                });
+                gridTable.appendChild(tableRow);
+            });
+        });
+}
+
+// Function to randomize the grid
+function randomizeGrid() {
+    fetch('/randomize_grid')
+        .then(response => response.json())
+        .then(() => {
+            // Trigger an update of the grid after randomization
+            updateGrid();
+        });
+}
+
+// Initial grid update
+updateGrid();
+
+    </script>
+</body>
+</html>

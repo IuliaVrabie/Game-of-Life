@@ -1,0 +1,51 @@
+body{
+    background-color: #161d49;
+    margin: 40px;
+    font-family: "Agency FB", sans-serif;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 5em;
+    margin: 10px;
+    color: #f1883e;
+}
+
+.white {
+    background-color: #fff;
+}
+
+.black {
+    background-color: #676fad;
+}
+
+table {
+    border-spacing: 0;
+    border: 1px solid black;
+    margin: 5px auto;
+    border-collapse: collapse;
+}
+
+td {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #2E5986;
+}
+
+div#controls {
+    text-align: center;
+    margin-top: 15px;
+}
+
+#startButton, #pauseButton, #randomizeButton {
+    width: 20%;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #f1883e;
+    color: white;
+    font-size: 2em;
+    font-family: "Agency FB", sans-serif;
+}
+
+
