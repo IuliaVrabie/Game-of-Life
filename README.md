@@ -51,3 +51,8 @@ You can randomize the grid with a new random configuration by accessing the `/ra
 
 
 ![First page](https://github.com/IuliaVrabie/Game-of-Life/blob/d54003f70ec95486a394cc0fc17a6efee46b5a6d/Interface.png)
+
+
+## Patterns in Conway's Game of Life
+![First page](https://github.com/IuliaVrabie/Game-of-Life/blob/2ceeb98133e379aea4322c12590f85cb87786cec/patterns.png)
+
