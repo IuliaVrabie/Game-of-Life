@@ -35,7 +35,7 @@ function pauseUpdatingGrid() {
     clearInterval(updateInterval);
 }
 
-// Function to update the grid using an AJAX request
+// Function to update the grid
 function updateGrid() {
     fetch('/get_grid')
         .then(response => response.json())
@@ -60,7 +60,6 @@ function randomizeGrid() {
     fetch('/randomize_grid')
         .then(response => response.json())
         .then(() => {
-            // Trigger an update of the grid after randomization
             updateGrid();
         });
 }
